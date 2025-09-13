@@ -7,6 +7,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
+import androidx.recyclerview.widget.RecyclerView;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -15,7 +16,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_main);
-        Project gettingStartedProject = new Project("Getting Started App", "Our very first project, the default 'Hello World' app!", 5);
+        RecyclerView list = findViewById(R.id.recycler_view_projects);
         Project[] projects = {
                 new Project("Getting Started App", "Our very first project that displays the classic 'Hello World' to learn the basics of Android development.", R.drawable.getting_started),
                 new Project("Crazy Quote", "An app that shows random motivational and fun quotes every time you open it.", R.drawable.quote),
@@ -24,5 +25,7 @@ public class MainActivity extends AppCompatActivity {
                 new Project("The Hungry Minds", "A restaurant-style demo app featuring menus, categories, and navigation with RecyclerView and CardView.", R.drawable.hungry_developer),
 
         };
+        ProjectAdapter adapter = new ProjectAdapter(projects);
+        list.setAdapter(adapter);
     }
 }
